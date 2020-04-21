@@ -118,7 +118,22 @@ function gotPackageInfo(pkgInfo) {
         cell.innerText = depJson[i]['immediate_deps'];
         cell = row.insertCell(4);
         cell.innerText = depJson[i]['all_deps'];
+        cell = row.insertCell(5);
+        cell.innerText = int_or_blank(depJson[i]['directVulnsCritical_score'] + depJson[i]['indirectVulnsCritical_score']);
+        cell = row.insertCell(6);
+        cell.innerText = int_or_blank(depJson[i]['directVulnsHigh_score'] + depJson[i]['indirectVulnsHigh_score']);
+        cell = row.insertCell(7);
+        cell.innerText = int_or_blank(depJson[i]['directVulnsMedium_score'] + depJson[i]['indirectVulnsMedium_score']);
+        cell = row.insertCell(8);
+        cell.innerText = int_or_blank(depJson[i]['directVulnsLow_score'] + depJson[i]['indirectVulnsLow_score']);
     }
+}
+
+function int_or_blank(n) {
+	if (n === 0) {
+		return '';
+	}
+	return n;
 }
 
 function calculate_element_score(json, total, score, scoringElem, i, descText) {
